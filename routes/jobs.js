@@ -11,14 +11,13 @@ function toNearest30(hours, minutes) {
     return new Date(2016, 21, 11, h, m)
 }
 
-let offset = 0
-
-router.get("/", (req, res, next) => {
+router.get("/:offset", (req, res, next) => {
+    let { offset } = req.params
     Job.count().then(count => {
-        if (offset === count) {
+        if (offset >= count) {
             offset = 0
         }
-        return Job.findOne().skip(offset)
+        return Job.findOne().sort({question: 1}).skip(offset)
     }).then(jobs => {
         offset += 1
         if (jobs === null || jobs.length === 0) {
@@ -33,10 +32,11 @@ router.get("/", (req, res, next) => {
 
 /**
  * userId: Number
- * value: 
+ * value: Any
+ * 
  */
-router.post("/:jobId", (req, res, next) => {
-    const { jobId } = req.params
+router.post("/:jobId/:time", (req, res, next) => {
+    const { jobId, time } = req.params
     const { userId, value } = req.body
     Job.findOne({
         _id: jobId
@@ -54,16 +54,19 @@ router.post("/:jobId", (req, res, next) => {
             next(new Error("User not found!"))
         } else {
             const stationId = String(user.startStation.stationId)
-            const currDate = new Date()
+            const currDate = new Date(time) || new Date()
             const currentLevel = peaks[stationId][toNearest30(currDate.getHours(), currDate.getMinutes())]
             console.log(currentLevel)
-            let bonusXP = baseXP 
+            let multiplier = 1
             if (typeof currentLevel !== "undefined") {
-                bonusXP *= (1 / (currentLevel / (mean[stationId] + 100) ))
+                multiplier = (1 / (currentLevel / (mean[stationId] + 100 / currentLevel) ))
             }
-            return Promise.resolve(Math.round(bonusXP, 10))
+            const bonusXP = multiplier * baseXP
+            return Promise.resolve([Math.round(bonusXP, 10), multiplier])
         }
-    }).then(bonusXP => {
+    }).then(data => {
+        const bonusXP = data[0]
+        const multiplier = data[1]
         console.log(bonusXP)
         const createResponse = Response.create({
             userId,
@@ -85,7 +88,8 @@ router.post("/:jobId", (req, res, next) => {
             }
             res.json({
                 totalXP: resp[1].xp + bonusXP,
-                bonusXP
+                bonusXP,
+                multiplier
             })
         }).catch(err => {
             next(err)

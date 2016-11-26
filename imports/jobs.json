@@ -49,12 +49,20 @@
         "question": "Choose all 8s",
         "content": "",
         "images": [
-            "http://i.imgur.com/xOuaxCC.png",
-            "http://i.imgur.com/y29ljRP.png",
-            "http://i.imgur.com/y46MOA5.png",
-            "http://i.imgur.com/SQbpiWX.png",
-            "http://i.imgur.com/CtoMDTf.png",
-            "http://i.imgur.com/Jlgl7cy.png"
+            "http://i.imgur.com/wOgfVk4.png",
+            "http://i.imgur.com/5WyjlZM.png",
+            "http://i.imgur.com/WFc0QbA.png",
+            "http://i.imgur.com/lidCj2M.png",
+            "http://i.imgur.com/n3ZPNkO.png",
+            "http://i.imgur.com/VQH2mb8.png"
+        ]
+    },
+    {
+        "type": "validate",
+        "question": "Would a cherry flavored red bull appeal to you?",
+        "content": "",
+        "images": [
+            "http://www.techjo.jp/wp-content/tmp/vol/2016/02/IMG_52382.jpg"
         ]
     }
 ]
