@@ -6,7 +6,8 @@ const StationSchema = new mongoose.Schema({
         coordinates: { type: [Number], default: [0,0]}
     },
     name: {type: String, required: true},
-    stationId: {type: Number, required: true}
+    stationId: {type: Number, required: true},
+    crowd: {type: [{type: Number, min: 1, max: 5}], required: true}
 })
 
 StationSchema.index({location: "2dsphere"})

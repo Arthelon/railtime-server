@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const Station = require("../models").Station
+const { Station, User } = require("../models")
 
 const minDistance = 0
 const maxDistance = 100
@@ -9,14 +9,14 @@ const maxDistance = 100
  *  lat: Number
  *  lng: Number
  */
-router.get("/coords", (req, res, next) => {
-    const { lat, lng } = req.query
+router.post("/coords", (req, res, next) => {
+    const { lat, lng, userId } = req.body
     console.log(lat)
     console.log(lng)
-    if (!lat || !lng) {
+    if (!lat || !lng || !userId) {
         res.status(400).json({
             success: false,
-            message: "Invalid query params"
+            message: "Invalid body params"
         })
     } else {
         Station.findOne({
@@ -32,6 +32,13 @@ router.get("/coords", (req, res, next) => {
             }
         }).then(station => {
             if (station) {
+                User.findOneAndUpdate({
+                    _id: userId
+                }, {
+                    startStation: station._id
+                }).catch(err => {
+                    console.log(err)
+                })
                 res.json({
                     success: true,
                     data: station
@@ -46,6 +53,29 @@ router.get("/coords", (req, res, next) => {
             next(err)
         })
     }
+})
+
+router.get("/crowd/:stationId", (req, res, next) => {
+    const { stationId } = req.params
+
+    Station.findOne({
+        stationId
+    }).then(station => {
+        if (!station) {
+            res.json({
+                success: false,
+                message: "No station found"
+            })
+        } else {
+            res.json({
+                success: true,
+                message: "Retrieved crowd levels from station",
+                data: station.crowd
+            })
+        }
+    }).catch(err => {
+        next(err)
+    })
 })
 
 router.get("/:stationId", (req, res, next) => {
