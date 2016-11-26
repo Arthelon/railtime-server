@@ -24,9 +24,11 @@ const apiBaseRoute = require("./routes/api")
 const jobApiRoute = require("./routes/jobs")
 const crowdApiRoute = require("./routes/crowds")
 const stationApiRoute = require("./routes/stations")
+const userApiRoute = require("./routes/users")
 app.use("/api/jobs", jobApiRoute)
 app.use("/api/crowds", crowdApiRoute)
 app.use("/api/stations", stationApiRoute)
+app.use("/api/users", userApiRoute)
 app.use("/api", apiBaseRoute)
 
 /**

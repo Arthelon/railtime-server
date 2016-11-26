@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const Job = require("../models").Job
+const { Job, Response } = require("../models")
 
 router.get("/", (req, res, next) => {
     const limit = req.query.limit ? Number(req.query.limit) : 10
@@ -24,8 +24,13 @@ router.get("/", (req, res, next) => {
     })
 })
 
+/**
+ * userId: Number
+ * value: 
+ */
 router.post("/:jobId", (req, res) => {
     const { jobId } = req.params
+
     res.json({
         success: true
     })
