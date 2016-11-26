@@ -2,6 +2,7 @@ const router = require("express").Router()
 const { Job, Response, User } = require("../models")
 const peaks = require("./peaks.json")
 const mean = require("./mean.json")
+const jobUtils = require("../controllers/jobs")
 const baseXP = 10
 
 function toNearest30(hours, minutes) {
@@ -11,10 +12,9 @@ function toNearest30(hours, minutes) {
 }
 
 router.get("/", (req, res, next) => {
-    const limit = req.query.limit ? Number(req.query.limit) : 10
     Job.count().then(count => {
         const randOffset = Math.floor(Math.random() * count)
-        return Job.findOne().skip(randOffset).limit(limit)
+        return Job.findOne().skip(randOffset)
     }).then(jobs => {
         if (jobs === null || jobs.length === 0) {
             res.json({
@@ -62,6 +62,7 @@ router.post("/:jobId", (req, res, next) => {
             value,
             jobId
         })
+        jobUtils.handleJobSubmit(jobId, value)
         const addExp = User.findOneAndUpdate({
             _id: userId
         }, {

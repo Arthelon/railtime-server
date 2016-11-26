@@ -1,36 +1,53 @@
 const router = require("express").Router()
 const { Station, User } = require("../models")
-
-const minDistance = 0
-const maxDistance = 100
+const stationUtils = require("../controllers/stations")
 
 /**
  * Params:
+ *  lat: Number,
+ *  lng: Number
+ */
+router.get("/coords", (req, res, next) => {
+    const { lat, lng } = req.query
+    if (!lat || !lng) {
+        res.status(400).json({
+            success: false,
+            message: "Invalid body params"
+        })
+    } else {
+        stationUtils.getNearestStation(lat, lng)
+        .then(station => {
+            if (station) {
+                res.json({
+                    success: true,
+                    data: station
+                })
+            } else {
+                res.json({
+                    success: false,
+                    message: "No stations found"
+                })
+            }
+        })
+    }
+})
+
+/**
+ * Body:
  *  lat: Number
  *  lng: Number
+ *  userId: String
  */
 router.post("/coords", (req, res, next) => {
     const { lat, lng, userId } = req.body
-    console.log(lat)
-    console.log(lng)
     if (!lat || !lng || !userId) {
         res.status(400).json({
             success: false,
             message: "Invalid body params"
         })
     } else {
-        Station.findOne({
-            location: {
-                $near: {
-                    $geometry: {
-                        type: "Point",
-                        coordinates: [ lng, lat ]
-                    },
-                    $maxDistance: maxDistance,
-                    $minDistance: minDistance
-                }
-            }
-        }).then(station => {
+        stationUtils.getNearestStation(lat, lng)
+        .then(station => {
             if (station) {
                 User.findOneAndUpdate({
                     _id: userId
@@ -55,6 +72,9 @@ router.post("/coords", (req, res, next) => {
     }
 })
 
+/**
+ * 
+ */
 router.get("/crowd/:stationId", (req, res, next) => {
     const { stationId } = req.params
 
@@ -82,11 +102,11 @@ router.get("/:stationId", (req, res, next) => {
     const { stationId } = req.params
     Station.findOne({
         stationId
-    }).then(job => {
-        if (job) {
+    }).then(station => {
+        if (station) {
             res.json({
                 success: true,
-                data: job
+                data: station
             })
         } else {
             res.json({
