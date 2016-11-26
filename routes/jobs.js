@@ -40,9 +40,18 @@ router.get("/", (req, res, next) => {
 router.post("/:jobId", (req, res, next) => {
     const { jobId } = req.params
     const { userId, value } = req.body
-    User.findOne({
-        _id: userId
-    }).populate("startStation").then(user => {
+    Job.findOne({
+        _id: jobId
+    }).then(job => {
+        if (!job) {
+            throw new Error("Job not found")
+        } else {
+            return User.findOne({
+                _id: userId
+            }).populate("startStation")
+        }
+    }).then(user => {
+        console.log(user)
         if (!user) {
             next(new Error("User not found!"))
         } else {
