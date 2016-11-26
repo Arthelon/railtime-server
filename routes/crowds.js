@@ -1,7 +1,7 @@
 const router = require("express").Router()
 
-router.get("/:stationName", (req, res) => {
-    
+router.get("/:stationId", (req, res) => {
+        
 })
 
 module.exports = router
