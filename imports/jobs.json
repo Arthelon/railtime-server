@@ -1,0 +1,52 @@
+[
+    {
+        "content": "Is this an ambulance?",
+        "images": [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_WV6A5gzXBRPJIV8kmQ_WnKKXM1omeexjB1cwuulSj9WGq01d",
+            "https://c1.staticflickr.com/5/4125/4963395716_f244171106_b.jpg",
+            "http://cdn3.i-scmp.com/sites/default/files/styles/980x551/public/2015/03/05/tungchoistreet-net.jpg?itok=FsDSsj9w",
+            "http://i1.ytimg.com/vi/-z8jsgl3iHE/maxresdefault.jpg",
+            "http://farm6.static.flickr.com/5268/5645112450_d46e118fed.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/8/8c/Sprinter_414_UVG_HK.jpg",
+            "http://farm3.static.flickr.com/2774/4129160757_e9f2a5e177.jpg",
+            "http://rescue911.de/data/thumbnails/1975/2011_12_26_hongkong_amb-471-487_tsim-sha-tsui.jpg",
+            "http://i.telegraph.co.uk/multimedia/archive/03006/hk_ambulance_3006337b.jpg",
+            "http://www.ambulance-photos.net/images/pf-ambulance/6169.jpg"
+        ],
+        "type": "validate"
+    },
+    {
+        "type": "spam",
+        "content": "I am Charles Wood of the US Army base in Afghanistan for peace keeping I found your contact detail in a address journal am seeking your assistance to evacuate the sum of $8,000,000.00 to you as long as I am assured that it will be safe in your care until I complete my service here in Afghanistan. This is not stolen money and there are no dangers involved.\n \nI count on your understanding. please get back to my personal email: charleswoodwood963@gmail.com"
+    },
+    {
+        "type": "validate",
+        "content": "Is this website suitable for a general audience?",
+        "images": [
+            "http://static.wixstatic.com/media/f616c9a17bae4967ab1a77ef8bdcbfb6.jpg"
+        ]
+    },
+    {
+        "type": "normal",
+        "content": "What is the name on this business card?",
+        "images": [
+            "https://lh6.ggpht.com/JHYielbi8lDXKgE5h5PSifTqbMKCo8Pc4w3VixR3VB5eedUTIxJE5fco7oHZp294zn4=h900"
+        ]
+    },
+    {
+        "type": "validate",
+        "content": "Is this a positive movie review?\n\"This movie is terrible but it has some good effects.\""
+    },
+    {
+        "type": "selection",
+        "content": "Choose all 8s",
+        "images": [
+            "http://i.imgur.com/xOuaxCC.png",
+            "http://i.imgur.com/y29ljRP.png",
+            "http://i.imgur.com/y46MOA5.png",
+            "http://i.imgur.com/SQbpiWX.png",
+            "http://i.imgur.com/CtoMDTf.png",
+            "http://i.imgur.com/Jlgl7cy.png"
+        ]
+    }
+]

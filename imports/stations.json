@@ -1,0 +1,25 @@
+[{
+    "location": {
+        "type": "Point",
+        "coordinates": [114.214102, 22.323404]
+    },
+    "name": "Kowloon Bay",
+    "stationId": 13,
+    "crowd": [4, 4, 5, 2, 1, 2, 4, 3]
+}, {
+    "location": {
+        "type": "Point",
+        "coordinates": [114.208375, 22.387774]
+    },
+    "name": "Shek Mun",
+    "stationId": 99,
+    "crowd": [5, 4, 5, 2, 2, 4, 1, 4]
+}, {
+    "location": {
+        "type": "Point",
+        "coordinates": [114.172158, 22.297597]
+    },
+    "name": "Tsim Sha Tsui",
+    "stationId": 3,
+    "crowd": [3, 3, 2, 3, 4, 3, 4, 1]
+}]
