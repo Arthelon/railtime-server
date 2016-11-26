@@ -10,23 +10,14 @@ const stationUtils = require("../controllers/stations")
 router.get("/coords", (req, res, next) => {
     const { lat, lng } = req.query
     if (!lat || !lng) {
-        res.status(400).json({
-            success: false,
-            message: "Invalid body params"
-        })
+        res.sendStatus(400)
     } else {
         stationUtils.getNearestStation(lat, lng)
         .then(station => {
             if (station) {
-                res.json({
-                    success: true,
-                    data: station
-                })
+                res.json(station)
             } else {
-                res.json({
-                    success: false,
-                    message: "No stations found"
-                })
+                res.json({})
             }
         })
     }
@@ -41,10 +32,7 @@ router.get("/coords", (req, res, next) => {
 router.post("/coords", (req, res, next) => {
     const { lat, lng, userId } = req.body
     if (!lat || !lng || !userId) {
-        res.status(400).json({
-            success: false,
-            message: "Invalid body params"
-        })
+        res.sendStatus(400)
     } else {
         stationUtils.getNearestStation(lat, lng)
         .then(station => {
@@ -56,15 +44,9 @@ router.post("/coords", (req, res, next) => {
                 }).catch(err => {
                     console.log(err)
                 })
-                res.json({
-                    success: true,
-                    data: station
-                })
+                res.json(station)
             } else {
-                res.json({
-                    success: false,
-                    message: "No stations found"
-                })
+                res.json({})
             }
         }).catch(err => {
             next(err)
@@ -82,16 +64,9 @@ router.get("/crowd/:stationId", (req, res, next) => {
         stationId
     }).then(station => {
         if (!station) {
-            res.json({
-                success: false,
-                message: "No station found"
-            })
+            res.sendStatus(400)
         } else {
-            res.json({
-                success: true,
-                message: "Retrieved crowd levels from station",
-                data: station.crowd
-            })
+            res.json(station.crowd)
         }
     }).catch(err => {
         next(err)
@@ -104,15 +79,9 @@ router.get("/:stationId", (req, res, next) => {
         stationId
     }).then(station => {
         if (station) {
-            res.json({
-                success: true,
-                data: station
-            })
+            res.json(station)
         } else {
-            res.json({
-                success: false,
-                message: "No station found"
-            })
+            res.sendStatus(400)
         }
     }).catch(err => {
         next(err)
@@ -121,10 +90,7 @@ router.get("/:stationId", (req, res, next) => {
 
 router.get("/", (req, res, next) => {
     Station.find({}).then(stations => {
-        res.json({
-            success: true,
-            data: stations
-        })
+        res.json(stations)
     }).catch(err => {
         next(err)
     })

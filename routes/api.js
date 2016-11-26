@@ -1,10 +1,7 @@
 const router = require("express").Router()
 
 router.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "API is healthy"
-    })
+    res.sendStatus(200)
 })
 
 module.exports = router

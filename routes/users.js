@@ -4,15 +4,9 @@ const User = require("../models").User
 router.get("/", (req, res, next) => {
     User.find({}).then(users => {
         if (!users) {
-            res.json({
-                success: false,
-                message: "No users found!"
-            })
+            res.sendStatus(400)
         } else {
-            res.json({
-                success: true,
-                data: users
-            })
+            res.json(users)
         }
     }).catch(err => {
         next(err)

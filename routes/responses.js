@@ -6,10 +6,7 @@ router.get("/", (req, res, next) => {
         .populate("jobId")
         .then(resp => {
             console.log(resp)
-            res.json({
-                success: true,
-                data: resp || []
-            })
+            res.json(resp || [])
         }).catch(err => {
             next(err)
         })

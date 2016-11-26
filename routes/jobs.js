@@ -17,16 +17,9 @@ router.get("/", (req, res, next) => {
         return Job.findOne().skip(randOffset)
     }).then(jobs => {
         if (jobs === null || jobs.length === 0) {
-            res.json({
-                success: true,
-                message: "No jobs found!",
-                data: []
-            })
+            res.json([])
         } else {
-            res.json({
-                success: true,
-                data: jobs
-            })
+            res.json(jobs)
         }
     }).catch(err => {
         next(err)
@@ -84,11 +77,7 @@ router.post("/:jobId", (req, res, next) => {
             if (!resp[1]) {
                 next(new Error("User not found!"))
             }
-            res.json({
-                success: true,
-                message: "Job submission successful",
-                data: resp[1].xp + bonusXP
-            })
+            res.json(resp[1].xp + bonusXP)
         }).catch(err => {
             next(err)
         })
