@@ -11,11 +11,16 @@ function toNearest30(hours, minutes) {
     return new Date(2016, 21, 11, h, m)
 }
 
+let offset = 0
+
 router.get("/", (req, res, next) => {
     Job.count().then(count => {
-        const randOffset = Math.floor(Math.random() * count)
-        return Job.findOne().skip(randOffset)
+        if (offset === count) {
+            offset = 0
+        }
+        return Job.findOne().skip(offset)
     }).then(jobs => {
+        offset += 1
         if (jobs === null || jobs.length === 0) {
             res.json([])
         } else {
