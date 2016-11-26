@@ -51,6 +51,7 @@ router.post("/:jobId", (req, res, next) => {
             const stationId = String(user.startStation.stationId)
             const currDate = new Date()
             const currentLevel = peaks[stationId][toNearest30(currDate.getHours(), currDate.getMinutes())]
+            console.log(currentLevel)
             let bonusXP = baseXP 
             if (typeof currentLevel !== "undefined") {
                 bonusXP *= (1 / (currentLevel / (mean[stationId] + 100) ))
@@ -77,7 +78,10 @@ router.post("/:jobId", (req, res, next) => {
             if (!resp[1]) {
                 next(new Error("User not found!"))
             }
-            res.json(resp[1].xp + bonusXP)
+            res.json({
+                totalXP: resp[1].xp + bonusXP,
+                bonusXP
+            })
         }).catch(err => {
             next(err)
         })
