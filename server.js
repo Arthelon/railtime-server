@@ -8,6 +8,8 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 dotenv.config()
 
+mongoose.Promise = Promise
+
 /**
  * Middleware
  */
@@ -19,6 +21,12 @@ app.use(bodyparser.urlencoded({extended: true}))
  * Routes
  */
 const apiBaseRoute = require("./routes/api")
+const jobApiRoute = require("./routes/jobs")
+const crowdApiRoute = require("./routes/crowds")
+const stationApiRoute = require("./routes/stations")
+app.use("/api/jobs", jobApiRoute)
+app.use("/api/crowds", crowdApiRoute)
+app.use("/api/stations", stationApiRoute)
 app.use("/api", apiBaseRoute)
 
 /**
