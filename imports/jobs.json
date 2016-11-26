@@ -1,6 +1,7 @@
 [
     {
-        "content": "Is this an ambulance?",
+        "question": "Is there are an ambulance in this picture?",
+        "content": "",
         "images": [
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_WV6A5gzXBRPJIV8kmQ_WnKKXM1omeexjB1cwuulSj9WGq01d",
             "https://c1.staticflickr.com/5/4125/4963395716_f244171106_b.jpg",
@@ -17,31 +18,36 @@
     },
     {
         "type": "spam",
-        "content": "Is this a spam email?:\nI am Charles Wood of the US Army base in Afghanistan for peace keeping I found your contact detail in a address journal am seeking your assistance to evacuate the sum of $8,000,000.00 to you as long as I am assured that it will be safe in your care until I complete my service here in Afghanistan. This is not stolen money and there are no dangers involved.\n \nI count on your understanding. please get back to my personal email: charleswoodwood963@gmail.com",
+        "question": "Is this a spam email?",
+        "content": "I am Charles Wood of the US Army base in Afghanistan for peace keeping I found your contact detail in a address journal am seeking your assistance to evacuate the sum of $8,000,000.00 to you as long as I am assured that it will be safe in your care until I complete my service here in Afghanistan. This is not stolen money and there are no dangers involved.\n \nI count on your understanding. please get back to my personal email: charleswoodwood963@gmail.com",
         "images": []
     },
     {
         "type": "validate",
-        "content": "Is this website suitable for a general audience?",
+        "question": "Is this website suitable for a general audience?",
+        "content": "",
         "images": [
             "http://static.wixstatic.com/media/f616c9a17bae4967ab1a77ef8bdcbfb6.jpg"
         ]
     },
     {
+        "question": "What is the name on this business card?",
         "type": "normal",
-        "content": "What is the name on this business card?",
+        "content": "",
         "images": [
             "https://lh6.ggpht.com/JHYielbi8lDXKgE5h5PSifTqbMKCo8Pc4w3VixR3VB5eedUTIxJE5fco7oHZp294zn4=h900"
         ]
     },
     {
         "type": "validate",
-        "content": "Is this a positive movie review?\n\"This movie is terrible but it has some good effects.\"",
+        "question": "Is this a positive movie review?",
+        "content": "\"You'd better choose Paul Verhoeven's even if you have watched it.\"",
         "images": []
     },
     {
         "type": "selection",
-        "content": "Choose all 8s",
+        "question": "Choose all 8s",
+        "content": "",
         "images": [
             "http://i.imgur.com/xOuaxCC.png",
             "http://i.imgur.com/y29ljRP.png",
